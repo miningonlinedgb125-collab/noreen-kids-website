@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Noreen Kids — TikTok Callback</title>
+</head>
+<body>
+  <main>
+    <h1>Noreen Kids</h1>
+    <p>TikTok authorization callback.</p>
+    <p id="status">Waiting for the TikTok authorization response.</p>
+  </main>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const error = params.get('error');
+    const code = params.get('code');
+    const status = document.getElementById('status');
+
+    if (error) {
+      status.textContent = 'TikTok authorization returned an error: ' + error;
+    } else if (code) {
+      status.textContent = 'TikTok authorization code received. Server-side token exchange is required.';
+    }
+  </script>
+</body>
+</html>
